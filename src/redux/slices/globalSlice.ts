@@ -1,15 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface GlobalState {
-  loading: boolean;
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GlobalState } from "../../utils/types/types";
 
 const initialState: GlobalState = {
   loading: false,
 };
 
 const globalSlice = createSlice({
-  name: 'global',
+  name: "global",
   initialState,
   reducers: {
     setLoading: (state, action: PayloadAction<boolean>) => {

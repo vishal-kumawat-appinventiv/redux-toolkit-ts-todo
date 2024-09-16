@@ -1,15 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setLoading } from "./globalSlice";
-
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-interface TodoState {
-  todos: Todo[];
-}
+import { Todo, TodoState } from "../../utils/types/types";
 
 const initialState: TodoState = {
   todos: [],
@@ -19,7 +10,7 @@ export const fetchTodos = createAsyncThunk(
   "todos/fetchTodos",
   async (_, { dispatch }) => {
     dispatch(setLoading(true));
-    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const response = await fetch(import.meta.env.VITE_API as string);
     const data = await response.json();
     dispatch(setLoading(false));
     return data as Todo[];
